@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TodoService } from './services/todo.service'
 
 @Component({
   selector: 'acme-root',
@@ -7,22 +8,30 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title : string = 'TODO List';
-  tasks : Array<string>=[];
   btnNameVariable = 'Test Button 3';
 
+  constructor(private todoService : TodoService) {
+  }
+
   addTask(taskInput : string) {
-    console.log(taskInput);
-    this.tasks.push(taskInput);   
-    taskInput = '';
+    this.todoService.addTask(taskInput);
+
+    // this.tasks.push(
+    //   {
+    //     label : taskInput,
+    //     isComplete : false
+    //   });   
+    // taskInput = '';
   }
 
-  completeTask(index : number) {
-    console.log(this.tasks[index].toString());
-    
-  }
+  // completeTask(index : number) {
+  //   console.log("Completing task " , this.tasks[index]);
+  //   let taskToComplete : any = this.tasks[index];
+  //   taskToComplete.isComplete = !taskToComplete.isComplete;
+  // }
 
-  deleteTask(index : number) {
-    console.log(index);
-    this.tasks.splice(index,1);
-  }
+  // deleteTask(index : number) {
+  //   console.log(index);
+  //   this.tasks.splice(index,1);
+  // }
 }
