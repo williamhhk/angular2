@@ -10,7 +10,8 @@ import { BehaviorSubject } from 'rxjs'
 
 export class TodoDisplayComponent implements OnInit {
 
-   tasksToDisplay : BehaviorSubject<Array<Object>> = new BehaviorSubject([]);
+   tasksToDisplay : BehaviorSubject<Array<Object>>;
+   //  Can use Observable (base class)
   // @Output() taskCompleted = new EventEmitter();
   // @Output() taskDeleted = new EventEmitter();
 
@@ -38,20 +39,15 @@ export class TodoDisplayComponent implements OnInit {
     //  Observable only in Angular, React can use promises.
     //  
     this.tasksToDisplay = this.todoService.getTasksObservable();
-
   }
-
 
   completeTask(index) {
     this.todoService.completeTask(index);
-    // this.taskCompleted.emit(index);
-    this.tasksToDisplay = this.todoService.getTasksObservable();
   }
 
   deleteTask(index) {
     // this.taskDeleted.emit(index);
     this.todoService.deleteTask(index);
-    this.tasksToDisplay = this.todoService.getTasksObservable();    
   }
 
   getCompleteButtonText(task) {

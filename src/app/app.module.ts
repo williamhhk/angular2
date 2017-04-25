@@ -15,7 +15,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     AppComponent,
     TextInputComponent,
     TodoDisplayComponent,
-    CapitalizePipe
+    CapitalizePipe // Need to initialize  , use inspector tools to debug. Template parse error.
   ],
   imports: [
     BrowserModule,
