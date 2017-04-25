@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'acme-todo-display',
@@ -9,7 +10,7 @@ import { TodoService } from '../../services/todo.service';
 
 export class TodoDisplayComponent implements OnInit {
 
-   tasksToDisplay : Array<Object> ;
+   tasksToDisplay : BehaviorSubject<Array<Object>> = new BehaviorSubject([]);
   // @Output() taskCompleted = new EventEmitter();
   // @Output() taskDeleted = new EventEmitter();
 
@@ -36,7 +37,7 @@ export class TodoDisplayComponent implements OnInit {
     //  Rendering portion is similar.
     //  Observable only in Angular, React can use promises.
     //  
-    this.tasksToDisplay = this.todoService.getTasks();
+    this.tasksToDisplay = this.todoService.getTasksObservable();
 
   }
 
@@ -44,13 +45,13 @@ export class TodoDisplayComponent implements OnInit {
   completeTask(index) {
     this.todoService.completeTask(index);
     // this.taskCompleted.emit(index);
-    this.tasksToDisplay = this.todoService.getTasks();
+    this.tasksToDisplay = this.todoService.getTasksObservable();
   }
 
   deleteTask(index) {
     // this.taskDeleted.emit(index);
     this.todoService.deleteTask(index);
-    this.tasksToDisplay = this.todoService.getTasks();    
+    this.tasksToDisplay = this.todoService.getTasksObservable();    
   }
 
   getCompleteButtonText(task) {
