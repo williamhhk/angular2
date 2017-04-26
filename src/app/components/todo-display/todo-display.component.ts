@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject } from 'rxjs';
+import { Store , Action } from  '@ngrx/store';
+// payload has a question ?, optional
 
 @Component({
   selector: 'acme-todo-display',
@@ -15,7 +17,10 @@ export class TodoDisplayComponent implements OnInit {
   // @Output() taskCompleted = new EventEmitter();
   // @Output() taskDeleted = new EventEmitter();
 
-  constructor(private todoService : TodoService) {
+ // DI store in here.
+  constructor(private todoService : TodoService,
+             private store : Store<any>) {
+    // This will be capture by the tools.
    }
 
   ngOnInit() {
@@ -23,7 +28,7 @@ export class TodoDisplayComponent implements OnInit {
     //  This get a reference to the array. Template binding.
     //  The service has a variable member of a list of tasks
     //  Alias for the list of task.
-    
+
     //  The list is modify in place.
     //  
     //  Now this.taskToDisplay is this.todoSerive.tasks
@@ -39,15 +44,33 @@ export class TodoDisplayComponent implements OnInit {
     //  Rendering portion is similar.
     //  Observable only in Angular, React can use promises.
     //  
+    //  Think of the store as something generic.
+    //  Complete Application State
+    //  Delete from application state
+    //  karma , debug unit test in the browser as they are running.
+    //  debugger;
+    
+
     this.tasksToDisplay = this.todoService.getTasksObservable();
   }
 
   completeTask(index) {
+    //  Fire off an action
+    //  Everyone subscribe to this will get this event.
+    this.store.dispatch( {
+      type : 'TODO_TASK_COMPLETED',
+      payload : index
+    })
     this.todoService.completeTask(index);
+
   }
 
   deleteTask(index) {
     // this.taskDeleted.emit(index);
+    this.store.dispatch( {
+      type : 'TODO_TASK_DELETED',
+      payload : index
+    })    
     this.todoService.deleteTask(index);
   }
 

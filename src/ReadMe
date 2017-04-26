@@ -14,4 +14,9 @@ Motivation
 6) Uni-directional Data Flow
 
 
+Redux DevTools
 
+https://github.com/ngrx
+
+karma , debug unit test in the browser as they are running.
+debugger;

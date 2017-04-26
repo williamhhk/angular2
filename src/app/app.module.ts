@@ -9,6 +9,9 @@ import { TodoDisplayComponent } from './components/todo-display/todo-display.com
 
 import { TodoService } from './services/todo.service';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { todoReducer } from './store/todo-reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,14 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    StoreModule.provideStore(
+      {
+        todo : todoReducer
+      }
+    ) , // Create a store.  Initialize only.  Store going to take over the data layer from the service.
+    StoreDevtoolsModule.instrumentOnlyWithExtension( { maxAge : 5})
+
   ],
   providers: [TodoService],
   bootstrap: [AppComponent]
