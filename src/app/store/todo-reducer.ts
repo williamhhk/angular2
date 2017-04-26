@@ -14,19 +14,22 @@ function getTask(taskInput : string) {
 	}
 }
 
-export const todoReducer = (state = defaultTask , action : Action) => {
+export function todoReducer (state = defaultTask , action : Action)  {
 	switch (action.type) {
+		case 'TODO_TASK_DELETED':
+			let items =  [].concat(state);
+			items.splice(action.payload,1);
+			return items;
 		case 'TODO_TASK_COMPLETED':
-			// let taskToComplete = state[action.payload];
-			// taskToComplete.isComplete = !taskToComplete.isComplete;
-			// return state;	
-			return 3;
+			let taskToComplete = state[action.payload];
+			taskToComplete.isComplete = !taskToComplete.isComplete;
+			return Object.assign(state, taskToComplete);	
 		case 'TODO_TASK_ADDED':
-		let label = action.payload;
-		let task = {
-						label : label,
-						isComplete : false
-					}
+			let label = action.payload;
+			let task = {
+							label : label,
+							isComplete : false
+						}
 			// Array.concat return a new array.
 			return state.concat(task);
 		default:

@@ -18,7 +18,7 @@ export class TodoDisplayComponent implements OnInit {
   // @Output() taskDeleted = new EventEmitter();
 
  // DI store in here.
-  constructor(private todoService : TodoService,
+  constructor(
              private store : Store<any>) {
     // This will be capture by the tools.
    }
@@ -59,11 +59,12 @@ export class TodoDisplayComponent implements OnInit {
   completeTask(index) {
     //  Fire off an action
     //  Everyone subscribe to this will get this event.
+    console.log('index is...');
     this.store.dispatch( {
       type : 'TODO_TASK_COMPLETED',
       payload : index
     })
-    this.todoService.completeTask(index);
+//    this.todoService.completeTask(index);
 
   }
 
@@ -73,7 +74,7 @@ export class TodoDisplayComponent implements OnInit {
       type : 'TODO_TASK_DELETED',
       payload : index
     })    
-    this.todoService.deleteTask(index);
+   // this.todoService.deleteTask(index);
   }
 
   getCompleteButtonText(task) {
