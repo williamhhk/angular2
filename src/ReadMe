@@ -1,0 +1,17 @@
+How do we built an application?
+
+1) Redux
+2) Angular for rendering engine.
+3) Redux to handle logic layer and data layer.
+
+Motivation
+----------
+1) Single Source of Truth
+2) SoC  (seperate logic from data)
+3) Scalable by having things react to events as opposed to caller dictating actions
+4) Reduce Complexity of Mental Map by seperation of components
+5) Create a coherent framework
+6) Uni-directional Data Flow
+
+
+

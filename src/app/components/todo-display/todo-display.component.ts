@@ -23,6 +23,7 @@ export class TodoDisplayComponent implements OnInit {
     //  This get a reference to the array. Template binding.
     //  The service has a variable member of a list of tasks
     //  Alias for the list of task.
+    
     //  The list is modify in place.
     //  
     //  Now this.taskToDisplay is this.todoSerive.tasks
