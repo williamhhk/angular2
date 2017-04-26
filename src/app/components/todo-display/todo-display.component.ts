@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Store , Action } from  '@ngrx/store';
 // payload has a question ?, optional
 
@@ -12,7 +12,7 @@ import { Store , Action } from  '@ngrx/store';
 
 export class TodoDisplayComponent implements OnInit {
 
-   tasksToDisplay : BehaviorSubject<Array<Object>>;
+   tasksToDisplay : Observable<Array<Object>>;
    //  Can use Observable (base class)
   // @Output() taskCompleted = new EventEmitter();
   // @Output() taskDeleted = new EventEmitter();
@@ -49,9 +49,11 @@ export class TodoDisplayComponent implements OnInit {
     //  Delete from application state
     //  karma , debug unit test in the browser as they are running.
     //  debugger;
-    
 
-    this.tasksToDisplay = this.todoService.getTasksObservable();
+
+    // this.tasksToDisplay = this.todoService.getTasksObservable();
+    // Using Redux store.
+    this.tasksToDisplay = this.store.select('todoList');
   }
 
   completeTask(index) {

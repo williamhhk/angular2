@@ -26,7 +26,7 @@ import { todoReducer } from './store/todo-reducer';
     HttpModule,
     StoreModule.provideStore(
       {
-        todo : todoReducer
+        todoList : todoReducer
       }
     ) , // Create a store.  Initialize only.  Store going to take over the data layer from the service.
     StoreDevtoolsModule.instrumentOnlyWithExtension( { maxAge : 5})

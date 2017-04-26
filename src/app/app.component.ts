@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TodoService } from './services/todo.service'
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'acme-root',
@@ -10,11 +11,20 @@ export class AppComponent {
   title : string = 'TODO List';
   btnNameVariable = 'Test Button 3';
 
-  constructor(private todoService : TodoService) {
+  constructor(private todoService : TodoService,
+             private storeService : Store<any>) {
   }
 
   addTask(taskInput : string) {
-    this.todoService.addTask(taskInput);
+
+    this.storeService.dispatch(
+        {
+          type : 'TODO_TASK_ADDED',
+          payload : taskInput
+        }
+    )
+    //  No longer need this, dispatch it to the store.
+//    this.todoService.addTask(taskInput);
 
     // this.tasks.push(
     //   {

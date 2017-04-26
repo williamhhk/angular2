@@ -20,3 +20,20 @@ https://github.com/ngrx
 
 karma , debug unit test in the browser as they are running.
 debugger;
+
+
+Defining thing using arrow function give different binding behavior.
+=>
+
+Older javascript function does not know about =>, so it bind thing differently.
+
+Dispatch
+
+Make the component react to the data.
+
+
+git push -u origin master
+
+Once we hook up Redux, no longer need services anymore.
+
+
