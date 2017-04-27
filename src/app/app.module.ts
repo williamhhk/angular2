@@ -12,6 +12,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { todoReducer } from './store/todo-reducer';
+import { userReducer } from './store/user-reducer';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,14 @@ import { todoReducer } from './store/todo-reducer';
     HttpModule,
     StoreModule.provideStore(
       {
-        todoList : todoReducer
+        todoList : todoReducer,
+        users : userReducer
       }
     ) , // Create a store.  Initialize only.  Store going to take over the data layer from the service.
     StoreDevtoolsModule.instrumentOnlyWithExtension( { maxAge : 5})
 
   ],
-  providers: [TodoService],
+  // providers: [TodoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

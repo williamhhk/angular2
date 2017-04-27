@@ -11,12 +11,11 @@ export class AppComponent {
   title : string = 'TODO List';
   btnNameVariable = 'Test Button 3';
 
-  constructor(private todoService : TodoService,
+  constructor(/*private todoService : TodoService,*/ 
              private storeService : Store<any>) {
   }
 
   addTask(taskInput : string) {
-
     this.storeService.dispatch(
         {
           type : 'TODO_TASK_ADDED',
